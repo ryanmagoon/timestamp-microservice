@@ -1,11 +1,16 @@
 'use strict';
 let express = require('express');
 let app = express();
-const millisecondsPerSecond = 1000;
+let path = require('path');
 
-let monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+const millisecondsPerSecond = 1000;
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December'
 ];
+
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
+});
 
 app.get('/:date', function (req, res) {
     // if its an integer 0 or greater, we can treat it as a unix timestamp
